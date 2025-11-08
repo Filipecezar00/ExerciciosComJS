@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Velas de Aniversario</h1>
+    <form id="frm">
+        <p>Idade: 
+             <label for="idade"></label>
+            <input type="number" id="inIdade">
+        </p>
+         <button id="exibirVelas" type="submit">Exibir Velas</button>
+         <button id="novasVelas">Novas Velas</button>
+    </form>
+        <div id="resp"></div>
+     <script>
+        const form = document.getElementById("frm")
+        const idade = document.getElementById("inIdade")
+        const btn_exibirVelas = document.getElementById("exibirVelas")
+        const btn_novasVelas = document.getElementById("novasVelas")
+        const resp = document.getElementById("resp")
+
+        btn_exibirVelas.addEventListener('click',(e)=>{
+            e.preventDefault()
+            let valorIdade = idade.value
+            if(valorIdade<1 || valorIdade>120){
+                alert('Por Favor, Digite uma Idade entre 1 e 120.')
+                return 
+            }
+            resp.innerText=''
+            const idade_caracteres= valorIdade.toString()
+
+            for(let i of idade_caracteres){
+                const numeros = document.createElement("img")
+                numeros.src="imagens/" + i + ".webp"
+                // numeros.src="imagens/1.jpg"
+                // numeros.src="imagens/2.webp"
+                // numeros.src ="imagens/3.webp"
+                // numeros.src = "imagens/4.webp"
+                // numeros.src = "imagens/5.webp"
+                // numeros.src = "imagens/6.webp"
+                // numeros.src = "imagens/7.webp"
+                // numeros.src = "imagens/8.webp"
+                // numeros.src = "imagens/9.webp"
+                resp.appendChild(numeros)
+            }
+        })
+
+     </script>
+</body>
+</html>
