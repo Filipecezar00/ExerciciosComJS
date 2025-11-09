@@ -34,8 +34,10 @@
              const textNode = document.createTextNode(i)
              let cor = Math.floor(Math.random() * 1677329)
              let string = cor.toString(16)
-             
+             let colorido = "#" + string.padStart(6)
+             h3.style.color = colorido
              h3.appendChild(textNode)
+             resp.appendChild(h3)
             }
          })
 </script>
