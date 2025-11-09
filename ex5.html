@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 5</title>
+</head>
+<body>
+    <h1>Nome Colorido</h1>
+    <hr>
+    <form id="frm">
+        <p>Nome Completo: 
+            <input type="text" id="inNome">
+            <label for="nome"></label>
+        </p>
+         <button id="btn_exibirPartes">Exibir Partes do Nome</button>
+    </form>
+      <div id="resp"></div>
+      <script>
+         const form = document.getElementById("frm")
+         const nome = document.getElementById("inNome")
+         const btn_exibirPartes = document.getElementById("btn_exibirPartes")
+         const resp = document.getElementById('resp')
+
+         btn_exibirPartes.addEventListener("click",(e)=>{
+            e.preventDefault()
+
+            let valorDoNome = nome.value
+            let partesDoNome = valorDoNome.split(" ")
+            resp.innerText=""
+
+            for(let i of partesDoNome){
+             const h3 = document.createElement('h3')
+             const textNode = document.createTextNode(i)
+             let cor = Math.floor(Math.random() * 1677329)
+             let string = cor.toString(16)
+             
+             h3.appendChild(textNode)
+            }
+         })
+</script>
+</body>
+</html>
