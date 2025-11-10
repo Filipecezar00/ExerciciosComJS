@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 6</title>
+</head>
+<body>
+    <h1>Copa do Brasil- Classificados</h1>
+    <hr> 
+     <form id="frm">
+         <p>Clube:
+            <input type="text" id="inClube" required autofocus>
+            <label for="clube"></label>
+         </p>
+        <button id="btn_adicionar">Adicionar</button>
+        <button id="btn_montarTabela">Montar Tabela De Jogos</button>
+        <button id="btn_NovosClubes">Novos Clubes</button>
+     </form>
+      <div id="resp"></div>  
+
+     <script>
+        const form = document.getElementById("frm")
+        const clube = document.getElementById("inClube")
+        const btn_adicionar = document.getElementById("btn_adicionar")
+        const btn_montarTabela = document.getElementById("btn_montarTabela")
+        const btn_NovosClubes = document.getElementById("btn_NovosClubes")
+        const resp = document.getElementById("resp")
+
+        btn_adicionar.addEventListener("click",(e)=>{
+            e.preventDefault()
+
+            let valorClube = clube.value 
+            let arrayClubes = valorClube.split(";")
+
+
+            for(let i of arrayClubes){
+             const h5 = document.createElement("h5")
+             let textNode = document.createTextNode(i)
+             h5.style.fontStyle = "italic"
+             h5.style.textAlign = "right"
+             h5.appendChild(textNode)
+             resp.appendChild(h5)
+            }
+        })
+
+         btn_montarTabela.addEventListener("click",(e)=>{
+            e.preventDefault()
+
+            const h5 = document.querySelectorAll("h5")
+
+
+            if(h5.length%2==0){
+                const tabela = document.createElement("table")
+                resp.appendChild(tabela)
+
+                for(let i of h5){
+                    
+                }
+
+            } 
+
+
+               
+            btn_adicionar.disabled = true 
+            btn_montarTabela.disabled = true
+            })
+    
+            btn_NovosClubes.addEventListener("click",(e)=>{
+                e.preventDefault()
+                confirm('Deseja limpar e digitar novos clubes ?')
+                resp.innerText=''
+            })
+
+        
+     </script>
+</body>
+</html>
