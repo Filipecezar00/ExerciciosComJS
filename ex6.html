@@ -53,6 +53,8 @@
 
             if(h5.length%2==0){
                 const tabela = document.createElement("table")
+              
+
                 resp.appendChild(tabela)
 
                 nomesClubes=[] 
@@ -64,9 +66,18 @@
 
                 let metadeArray = Math.floor(nomesClubes.length/2); 
                 for(let i=0;i<metadeArray;i++){
+                  let clube1=nomesClubes[i]
+                  let clube2 = nomesClubes.length - 1 - i 
+
                   let linha=tabela.insertRow(-1)
-                  let cell1=linha1.insertCell(0)
-                  let cell2=linha2.insertCell(1)
+                  let cell1=linha.insertCell()
+                  let res1 = cell1.textContent
+
+                  let cell2=linha.insertCell()
+                  let res2=cell2.textContent
+
+                  let cell3=linha.insertCell()
+                  let res3 =cell3.textContent
                 }
             } 
 
