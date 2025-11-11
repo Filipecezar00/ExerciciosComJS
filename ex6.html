@@ -26,12 +26,13 @@
         const btn_montarTabela = document.getElementById("btn_montarTabela")
         const btn_NovosClubes = document.getElementById("btn_NovosClubes")
         const resp = document.getElementById("resp")
+        let nomesClubes=[]
 
         btn_adicionar.addEventListener("click",(e)=>{
             e.preventDefault()
 
             let valorClube = clube.value 
-            let arrayClubes = valorClube.split(";")
+            let arrayClubes = valorClube.split("\n")
 
 
             for(let i of arrayClubes){
@@ -54,10 +55,19 @@
                 const tabela = document.createElement("table")
                 resp.appendChild(tabela)
 
+                nomesClubes=[] 
+
                 for(let i of h5){
-                    
+                  let extrairTexto=i.textContent 
+                  nomesClubes.push(extrairTexto)
                 }
 
+                let metadeArray = Math.floor(nomesClubes.length/2); 
+                for(let i=0;i<metadeArray;i++){
+                  let linha=tabela.insertRow(-1)
+                  let cell1=linha1.insertCell(0)
+                  let cell2=linha2.insertCell(1)
+                }
             } 
 
 
