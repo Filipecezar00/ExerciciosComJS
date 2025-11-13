@@ -67,17 +67,18 @@
                 let metadeArray = Math.floor(nomesClubes.length/2); 
                 for(let i=0;i<metadeArray;i++){
                   let clube1=nomesClubes[i]
-                  let clube2 = nomesClubes.length - 1 - i 
-
+                  let IndiceClube2 = nomesClubes.length - 1 - i 
+                  let clube2 = nomesClubes[IndiceClube2] 
+                    
                   let linha=tabela.insertRow(-1)
                   let cell1=linha.insertCell()
-                  let res1 = cell1.textContent
+                  let res1 = cell1.textContent=clube1
 
                   let cell2=linha.insertCell()
-                  let res2=cell2.textContent
+                  let res2=cell2.textContent='VS'
 
                   let cell3=linha.insertCell()
-                  let res3 =cell3.textContent
+                  let res3 =cell3.textContent=clube2
                 }
             } 
 
@@ -91,6 +92,9 @@
                 e.preventDefault()
                 confirm('Deseja limpar e digitar novos clubes ?')
                 resp.innerText=''
+
+                btn_adicionar.disabled=false
+                btn_montarTabela.disabled=false
             })
 
         
