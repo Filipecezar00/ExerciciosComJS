@@ -80,7 +80,10 @@
                   let cell3=linha.insertCell()
                   let res3 =cell3.textContent=clube2
                 }
-            } 
+            } else{
+                resp.innerText='Não há a quantidade correta de times, é necessario haver um número par para montar a tabela!'
+                resp.style.color='red'
+            }
 
 
                
