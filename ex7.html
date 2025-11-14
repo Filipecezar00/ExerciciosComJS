@@ -82,18 +82,20 @@
 
             let lista = `Apostas Realizadas\n${"-".repeat(25)}\n`;
 
+             const obterCavalo=(num)=>{
+                const posicao = num-1
+                return cavalos[posicao]
+            }
+
             for(const aposta of apostas){
                 lista+=`N°${aposta.cavalo} ${obterCavalo(aposta.cavalo)}`;
-                lista+=`-R$: ${aposta.valor.ToFixed(2)}\n`; 
+                lista+=`-R$: ${aposta.valor.toFixed(2)}\n`; 
             }
             respLinha.innerText = lista; 
             frm.reset()
             frm.inCavalo.focus()
 
-            const obterCavalo=(num)=>{
-                const posicao = num-1
-                return cavalos[posicao]
-            }
+           
         })
     </script>
 </body>
