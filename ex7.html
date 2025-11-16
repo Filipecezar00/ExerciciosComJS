@@ -94,9 +94,26 @@
             respLinha.innerText = lista; 
             frm.reset()
             frm.inCavalo.focus()
-
-           
         })
+         
+            frm.inCavalo.addEventListener("blur",()=>{
+                if(frm.inCavalo.value==""){
+                    respCavalo.innerText=""; 
+                    return; 
+                }
+                const numCavalo = Number(frm.inCavalo.value)
+
+                if(!validarCavalo(numCavalo)){
+                    alert('N° do Cavalo inválido'); 
+                    frm.inCavalo.focus(); 
+                    return; 
+                }
+                const nome = obterCavalo(numCavalo);
+                const contaNum = contarAposta(numCavalo);
+                const total = totalizarApostas(numCavalo);
+
+                respCavalo.innerText = `${nome} (Apostas:${contaNum} - R$:${total.toFixed(2)})`; 
+            }); 
     </script>
 </body>
 </html>
