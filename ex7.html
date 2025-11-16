@@ -101,7 +101,7 @@
             }
 
             const contarApostas = (num) =>{
-                let contador = 0 
+                let contador = 0; 
                 for(const aposta of apostas){
                     if(aposta.cavalo==num){
                         contador ++   
@@ -132,6 +132,9 @@
                     frm.inCavalo.focus(); 
                     return; 
                 }
+
+                
+
                 const nome = obterCavalo(numCavalo);
                 const contaNum = contarApostas(numCavalo);
                 const total = totalizarApostas(numCavalo);
