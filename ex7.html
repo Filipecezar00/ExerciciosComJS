@@ -95,7 +95,31 @@
             frm.reset()
             frm.inCavalo.focus()
         })
-         
+
+            const validarCavalo = (num)=>{
+                return num >=1 && num <= cavalos.length; 
+            }
+
+            const contarApostas = (num) =>{
+                let contador = 0 
+                for(const aposta of apostas){
+                    if(aposta.cavalo==num){
+                        contador ++   
+                    }
+                }
+                return contador; 
+            }; 
+
+            const totalizarApostas = (num)=>{
+                let total = 0; 
+                for(const aposta of apostas){
+                    if(aposta.cavalo == num){
+                        total+=aposta.valor 
+                    }
+                }
+                return total; 
+            }
+
             frm.inCavalo.addEventListener("blur",()=>{
                 if(frm.inCavalo.value==""){
                     respCavalo.innerText=""; 
@@ -109,11 +133,16 @@
                     return; 
                 }
                 const nome = obterCavalo(numCavalo);
-                const contaNum = contarAposta(numCavalo);
+                const contaNum = contarApostas(numCavalo);
                 const total = totalizarApostas(numCavalo);
 
                 respCavalo.innerText = `${nome} (Apostas:${contaNum} - R$:${total.toFixed(2)})`; 
             }); 
+
+                frm.inCavalo.addEventListener('focus',()=>{
+                    frm.inCavalo.value =""; 
+                    resp.innerText = ""; 
+                }); 
     </script>
 </body>
 </html>
