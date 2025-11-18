@@ -73,6 +73,37 @@
         const cavalos = ["Marujo","Tordilho","Belga",'Twister',"Jade",'Lucky']; 
         const apostas = []; 
 
+
+         const obterCavalo=(num)=>{
+                const posicao = num-1
+                return cavalos[posicao]
+            }
+
+         const validarCavalo = (num)=>{
+                return num >=1 && num <= cavalos.length; 
+            }
+
+           const contarApostas = (num) =>{
+                let contador = 0; 
+                for(const aposta of apostas){
+                    if(aposta.cavalo==num){
+                        contador ++   
+                    }
+                }
+                return contador; 
+            }; 
+
+             const totalizarApostas = (num)=>{
+                let total = 0; 
+                for(const aposta of apostas){
+                    if(aposta.cavalo == num){
+                        total+=aposta.valor 
+                    }
+                }
+                return total; 
+            }
+
+
         frm.addEventListener("submit",(e)=>{
             e.preventDefault()
             const cavalo = Number(frm.inCavalo.value); 
@@ -81,11 +112,6 @@
             apostas.push({cavalo,valor}); 
 
             let lista = `Apostas Realizadas\n${"-".repeat(25)}\n`;
-
-             const obterCavalo=(num)=>{
-                const posicao = num-1
-                return cavalos[posicao]
-            }
 
             for(const aposta of apostas){
                 lista+=`N°${aposta.cavalo} ${obterCavalo(aposta.cavalo)}`;
@@ -96,30 +122,7 @@
             frm.inCavalo.focus()
         })
 
-            const validarCavalo = (num)=>{
-                return num >=1 && num <= cavalos.length; 
-            }
-
-            const contarApostas = (num) =>{
-                let contador = 0; 
-                for(const aposta of apostas){
-                    if(aposta.cavalo==num){
-                        contador ++   
-                    }
-                }
-                return contador; 
-            }; 
-
-            const totalizarApostas = (num)=>{
-                let total = 0; 
-                for(const aposta of apostas){
-                    if(aposta.cavalo == num){
-                        total+=aposta.valor 
-                    }
-                }
-                return total; 
-            }
-
+            
             frm.inCavalo.addEventListener("blur",()=>{
                 if(frm.inCavalo.value==""){
                     respCavalo.innerText=""; 
