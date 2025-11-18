@@ -164,10 +164,11 @@
               frm.btGanhador.addEventListener("click",()=>{
                 const ganhador = Number(prompt("N° Cavalo Ganhador: "))
 
-                if(ganhador==NaN || !validarCavalo(ganhador)) {
-                    alert("Cavalo Inválido");              
+                if(isNaN(ganhador) || !validarCavalo(ganhador)) {
+                    alert("Cavalo Inválido");        
+                     return;       
                 }
-                return; 
+              
 
                 const total = apostas.reduce((acumulador,aposta)=>acumulador+aposta.valor,0); 
 
