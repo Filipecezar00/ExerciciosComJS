@@ -42,5 +42,27 @@
             </div>
         </div>
     </div>
+    <script>
+        const frm = document.querySelectorAll("form");
+        const dvPalco = document.querySelector("#divPalco");
+        const poltronas = 240 
+        const reservadas = []
+
+        window.addEventListener('load',()=>{
+        // Se houver dados salvos no localstorage, faz um split(";") e 
+        // Atribui esses dados ao array, caso ao contrário, o array é inicializado vazio 
+         const ocupadas = localStorage.getItem('teatroOcupadas') ? localStorage.getItem("teatroOcupadas").split(';'):[]; 
+
+        for(let i = 1; i<poltronas;i++){
+            const figure = document.createElement("figure")
+            const imgStatus = document.createElement('img')
+
+            imgStatus.src = ocupadas.includes(i.toString()) ? "img/https://www.bing.com/images/search?view=detailV2&ccid=ip647YAq&id=31AE96101382876F2A71F481BC6D1C6EE64E9351&thid=OIP.ip647YAqlmVwh6rTYQL71wAAAA&mediaurl=https%3a%2f%2fhttp2.mlstatic.com%2fD_Q_NP_2X_998742-MLB45016396939_022021-R.jpg&cdnurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.8a9eb8ed802a96657087aad36102fbd7%3frik%3dUZNO5m4cbbyB9A%26pid%3dImgRaw%26r%3d0&exph=140&expw=140&q=Simbolo+De+Ocupado&FORM=IRPRST&ck=917BF0F42C72D4A5BB5A6285C18DBAB4&selectedIndex=0&itb=0&qft=+filterui%3aimagesize-small" : "img/https://www.bing.com/images/search?view=detailV2&ccid=pYDtex9M&id=47A6B01A8E4652583BC9D48CFBDEA36E357D5BE7&thid=OIP.pYDtex9MZ7ISeiRp7zo4PQAAAA&mediaurl=https%3a%2f%2fcdn.pixabay.com%2fphoto%2f2013%2f07%2f12%2f17%2f00%2fapproved-151676__180.png&cdnurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.a580ed7b1f4c67b2127a2469ef3a383d%3frik%3d51t9NW6j3vuM1A%26pid%3dImgRaw%26r%3d0&exph=180&expw=180&q=+disponivel+icone&FORM=IRPRST&ck=B22F11F146904CC6A945382673EE63B7&selectedIndex=8&itb=1&qft=+filterui%3aimagesize-small"; 
+
+        
+
+        }
+        })
+    </script>
 </body>
 </html>
