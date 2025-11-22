@@ -54,8 +54,8 @@
          const ocupadas = localStorage.getItem('teatroOcupadas') ? localStorage.getItem("teatroOcupadas").split(';'):[]; 
 
         for(let i = 1; i<poltronas;i++){
-            const figure = document.createElement("figure")
-            const imgStatus = document.createElement('img')
+            const figure = document.createElement("figure");
+            const imgStatus = document.createElement('img');
 
             imgStatus.src = ocupadas.includes(i.toString()) ? "imagens/reservado.jpg":"imagens/disponivel.webp"; 
             imgStatus.className= "poltrona" // classe com dimensão da img 
