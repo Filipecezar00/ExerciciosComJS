@@ -43,7 +43,7 @@
         </div>
     </div>
     <script>
-        const frm = document.querySelectorAll("form");
+        const frm = document.querySelector("form");
         const dvPalco = document.querySelector("#divPalco");
         const poltronas = 240 
         const reservadas = []
@@ -57,7 +57,7 @@
             const figure = document.createElement("figure")
             const imgStatus = document.createElement('img')
 
-            imgStatus.src = ocupadas.includes(i.toString()) ? "imagens/close.png":"imagens/OIP.webp"; 
+            imgStatus.src = ocupadas.includes(i.toString()) ? "imagens/reservado.jpg":"imagens/disponivel.webp"; 
             imgStatus.className= "poltrona" // classe com dimensão da img 
             const figureCap = document.createElement('figcaption'); 
         
@@ -72,9 +72,46 @@
             if(i%24==12)figure.style.marginRight="60px"; 
 
             dvPalco.appendChild(figure)
-            (i%24==0) && dvPalco.appendChild(document.createElement("br")); 
+            if(i%24==0){
+            dvPalco.appendChild(document.createElement("br")); 
+            } 
         }
     })
+
+    frm.addEventListener("submit",(e)=>{
+        e.preventDefault()
+
+        const poltrona = Number(frm.inPoltrona.value) // obtém o contéudo do inPoltrona
+
+        if(poltrona>poltronas){
+            alert("Informe um número de poltrona válido"); 
+            frm.inPoltrona.focus(); 
+            return; 
+        }
+        const ocupadas = localStorage.getItem('teatroOcupadas')?localStorage.getItem("teatroOcupadas").split(";"):[]; 
+
+        if(ocupadas.includes(poltrona.toString())){
+            alert(`Poltrona ${poltrona} já está ocupada`); 
+            frm.inPoltrona.value=""; 
+            frm.inPoltrona.focus(); 
+            return; 
+        }
+        // Captura imagem da poltrona,filha de divPalco. é -1 pois começa em 0 
+        const imgPoltrona = dvPalco.querySelector("img")[poltrona-1]; 
+
+        imgPoltrona.src = "imagens/reservada.jpg";
+
+        reservadas.push(poltrona); 
+
+        frm.inPoltrona.value=""; 
+        frm.inPoltrona.focus(); 
+    })
+
+    frm.btConfirmar.addEventListener("click",()=>{
+        
+    })
+
+    
     </script>
 </body>
 </html>
