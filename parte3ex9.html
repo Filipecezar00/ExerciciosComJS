@@ -31,8 +31,25 @@
                 <div class="row">
                     <div class="col-sm-8">
                         <h2 class="mt-2">Palavra:
-                            <span id="outPalavra" class=""></span>
+                            <span id="outPalavra" class="entre-letras text-primary"></span>
                         </h2>
+                        <h2>N° Chances:
+                            <span id="outChances" class="text-danger">4</span>
+                        </h2>
+                        <h2>Erros: 
+                            <span id="outErros" class="entre-letras text-danger"></span>
+                        </h2>
+                        <h2 id="outMensagemFinal"></h2>
+                    </div>
+                    <div class="col-sm-4">
+                        <h3 class="mt-2">Situação do Jogador:</h3>
+                        <img src="imagens/ok.webp" alt="situação do Jogador" class="img-fluid">
+                    </div>
+                </div>
+                <div class="row corFundo p-3">
+                    <div class="col-sm-12">
+                        <input type="button" value="Ver Dica" class="btn btn-primary" id="btVerDica">
+                        <span id="outDica">*Custo: 1 chance</span>
                     </div>
                 </div>
             </div>
