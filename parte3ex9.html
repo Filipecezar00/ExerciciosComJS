@@ -55,5 +55,48 @@
             </div>
         </form>
     </div>
+    <script>
+        const frm = document.querySelector("form"); 
+        const respPalavra = document.querySelector("#outPalavra");
+        const respErros = document.querySelector("#outErros"); 
+        const respDica = document.querySelector("#outDica"); 
+        const respChances = document.querySelector("#outChances");
+        const respMensagemFinal = document.querySelector("#outMensagemFinal");
+        const imgStatus = document.querySelector("img"); 
+
+        // declara variáveis globais
+        let palavraSorteada ;
+        let dicaSorteada;
+
+        window.addEventListener("load",()=>{
+            if(!localStorage.getItem("jogoPalavra")){
+                alert("Cadastre Palavras Para Jogar"); 
+                frm.inLetra.disabled = true; 
+                frm.btJogar.disabled = true; 
+                frm.btVerDica.disabled = true; 
+            }
+            const palavras = localStorage.getItem("jogoPalavra").split(';'); 
+            const dicas = localStorage.getItem("jogoDica").split(";"); 
+
+            const tam = palavras.length; // Número de palavras Cadastradas 
+
+            // gera um número entre 0 e tam-1 (pois arredonda para baixo)
+            const numAleatorio = Math.floor(Math.random()*tam); 
+
+            //obtém Palavra (em letras maiusculas) e dica na posição do n° aleatório gerado
+            palavraSorteada = palavras[numAleatorio].toUpperCase(); 
+            dicaSorteada = dicas[numAleatorio]; 
+            let novaPalavra = ""; 
+
+            for(const letra of palavraSorteada){
+                if(letra ==palavraSorteada.charAt(0)){
+                    novaPalavra+=palavraSorteada.charAt(0); 
+                }else{
+                    novaPalavra+= "_"; 
+                }
+            }
+            respPalavra.innerText = novaPalavra; 
+        })
+    </script>
 </body>
 </html>
