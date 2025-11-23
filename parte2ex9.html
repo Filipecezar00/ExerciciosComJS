@@ -14,7 +14,7 @@
         <a href="#" class="btn btn-success">Listar Palavras</a>
         <a href="#" class="btn btn-danger">Iniciar Jogo</a>
         <h2 class="mt-3">Listagem das Palavras</h2>
-        <p class="text-end"><input type="checkbox">Mostrar Palavras</p>
+        <p class="text-end"><input type="checkbox" style="cursor: pointer;">Mostrar Palavras</p>
         <table class="table table-striped">
             <tr>
                 <th>Palavra</th>
@@ -41,10 +41,19 @@
 
                     col1.innerText = palavras[i]
                     col2.innerText = dicas[i]
-                    col3.innerHTML = "<i class = 'exclui' title='Excluir'>&#10008;</i>"; 
+                    col3.innerHTML = "<i class = 'exclui' title='Excluir' style = cursor:pointer;>&#10008;</i>"; 
                 }
             }
-        }
+        }; 
+               ckMostrar.addEventListener("change",()=>{
+                ckMostrar.checked ? montarTabela() : window.location.reload(); 
+               }); 
+
+               tbPalavras.addEventListener('click',(e)=>{
+
+               })
+
+
     </script>
 </body>
 </html>
