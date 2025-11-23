@@ -50,8 +50,30 @@
                }); 
 
                tbPalavras.addEventListener('click',(e)=>{
+                if(e.target.classList.contains("exclui")) {
+                const palavra = e.target.parentElement.parentElement.children[0].innerText;
 
-               })
+                if(confirm(`Confirma Exclusão da Palavra: "${palavra}" ?`)) {
+                  e.target.parentElement.parentElement.remove(); 
+
+                  // Exclui dados do localStorage 
+                  localStorage.removeItem("jogoPalavra"); 
+                  localStorage.removeItem("jogoDica");  
+
+                  const palavras = []; 
+                  const dicas = []; 
+
+                  // Obtém os dados da tabela, acrescentando-os aos vetores 
+                  for(let i =1;i<tbPalavras.rows.length;i++){
+                    palavras.push(tbPalavras.rows[i].cells[0].innerText);
+                    dicas.push(tbPalavras.rows[i].cells[1].innerText);  
+                   }
+                   // Salva o contéudo dos vetores em localStorage (sem linha removida)
+                   localStorage.setItem("jogoPalavra",palavras.join(";")); 
+                   localStorage.setItem("jogoDica", dicas.join(";")); 
+                }
+             }
+       }); 
 
 
     </script>
