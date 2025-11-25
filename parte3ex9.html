@@ -98,10 +98,49 @@
             respPalavra.innerText = novaPalavra; 
         })
 
+          frm.addEventListener("submit",(e)=>{
+            e.preventDefault(); 
+            const letra = frm.inLetra.value.toUpperCase()
+
+            let erros = respErros.innerText; // Obtém contéudo dos elementos 
+            let palavra = respPalavra.innerText; 
+
+
+            if(erros.includes(letra) || palavra.includes(letra)){
+                alert("Você já Apostou essa Letra"); 
+                frm.inLetra.focus(); 
+                return; 
+            }
+            // se letra consta em palavraSorteada 
+            if(palavraSorteada.includes(letra)){
+                let novaPalavra = "";  //Para compor NovaPalavra 
+                // for para montar palavra a ser exibida 
+                for(let i = 0; i<palavraSorteada.length;i++){ 
+                    // se igual a letra apostada, acrescenta esta letra na exibição
+                    if(palavraSorteada.charAt(i)==letra){
+                        novaPalavra+=letra; 
+                    }else{
+                        novaPalavra+=palavra.charAt(i); 
+                    }
+                }
+                respPalavra.innerText = novaPalavra; 
+            }else{
+                respErros.innerText +=letra; 
+                const chances = Number(respChances.innerText) - 1 
+                respChances.innerText = chance; 
+                trocarStatus(chances)
+            }
+            verificarFim()
+            frm.inLetra.value = ""; 
+            frm.inLetra.focus(); 
+        })
+
         const trocarStatus = (num) =>{
-            if(num>0) imgStatus.src = `img/status${num}.webp`; 
+            if(num>0){
+            imgStatus.src = `img/status${num}.webp`; 
         }
-        
+    }
+      
 
        frm.btVerDica.addEventListener("click",()=>{
         if(respErros.innerText.includes("*")){
