@@ -43,7 +43,7 @@
                     </div>
                     <div class="col-sm-4">
                         <h3 class="mt-2">Situação do Jogador:</h3>
-                        <img src="imagens/ok.webp" alt="situação do Jogador" class="img-fluid">
+                        <img src="imagens/status4.webp" alt="situação do Jogador" class="img-fluid">
                     </div>
                 </div>
                 <div class="row corFundo p-3">
@@ -97,6 +97,12 @@
             }
             respPalavra.innerText = novaPalavra; 
         })
+
+        const trocarStatus = (num) =>{
+            if(num>0) imgStatus.src = `img/status${num}.webp`; 
+        }
+        
+
        frm.btVerDica.addEventListener("click",()=>{
         if(respErros.innerText.includes("*")){
             alert("Você já solicitou a Dica...");
