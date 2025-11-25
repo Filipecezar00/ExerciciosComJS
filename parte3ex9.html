@@ -97,6 +97,25 @@
             }
             respPalavra.innerText = novaPalavra; 
         })
+       frm.btVerDica.addEventListener("click",()=>{
+        if(respErros.innerText.includes("*")){
+            alert("Você já solicitou a Dica...");
+            frm.inLetra.focus(); 
+            return; 
+        }
+        respDica.innerText = " * " + dicaSorteada; //  exibe Dica 
+        respErros.innerText +="*";  
+
+        const chances = Number(respChances.innerText) - 1; 
+        respChances.innerText = chances;  
+
+        trocarStatus(chances);  // Troca imagem
+
+        verificarFim(); // verifica se atingiu limite de chances 
+
+        frm.inLetra.focus(); 
+       })
+
     </script>
 </body>
 </html>
