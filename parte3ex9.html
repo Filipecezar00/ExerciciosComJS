@@ -98,6 +98,27 @@
             respPalavra.innerText = novaPalavra; 
         })
 
+            const concluirJogo = () =>{
+            respDica.innerText = "*Clique no botão 'iniciar Jogo' para jogar Novamente"  
+            frm.inLetra.disabled = true; 
+            frm.btJogar.disabled = true; 
+            frm.btVerDica.disabled = true;       
+            }
+            const verificarFim=()=>{
+                const chances = Number(respChances.innerText) // obtém o número de chances
+
+                if(chances==0){
+                    respMensagemFinal.className = "display-3 text-danger"; 
+                    respMensagemFinal.innerText = `Ah.... é ${palavraSorteada}. Você Perdeu!!`
+                    concluirJogo(); 
+                }else if(respPalavra.innerText==palavraSorteada){
+                    respMensagemFinal.className = "display-3 text-primary"; 
+                    respMensagemFinal.innerText = "Parabéns!! Você ganhou"; 
+                    trocarStatus(4)
+                    concluirJogo()
+                } 
+            }
+
           frm.addEventListener("submit",(e)=>{
             e.preventDefault(); 
             const letra = frm.inLetra.value.toUpperCase()
@@ -133,7 +154,7 @@
             verificarFim()
             frm.inLetra.value = ""; 
             frm.inLetra.focus(); 
-        })
+        } )
 
         const trocarStatus = (num) =>{
             if(num>0){
