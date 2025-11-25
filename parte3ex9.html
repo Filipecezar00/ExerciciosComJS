@@ -63,7 +63,7 @@
         const respChances = document.querySelector("#outChances");
         const respMensagemFinal = document.querySelector("#outMensagemFinal");
         const imgStatus = document.querySelector("img"); 
-
+       
         // declara variáveis globais
         let palavraSorteada ;
         let dicaSorteada;
@@ -74,6 +74,7 @@
                 frm.inLetra.disabled = true; 
                 frm.btJogar.disabled = true; 
                 frm.btVerDica.disabled = true; 
+                return; 
             }
             const palavras = localStorage.getItem("jogoPalavra").split(';'); 
             const dicas = localStorage.getItem("jogoDica").split(";"); 
@@ -97,6 +98,12 @@
             }
             respPalavra.innerText = novaPalavra; 
         })
+
+            const trocarStatus = (num) =>{
+            if(num>0){
+            imgStatus.src = `imagens/status${num}.webp`; 
+        }
+    }
 
             const concluirJogo = () =>{
             respDica.innerText = "*Clique no botão 'iniciar Jogo' para jogar Novamente"  
@@ -148,7 +155,7 @@
             }else{
                 respErros.innerText +=letra; 
                 const chances = Number(respChances.innerText) - 1 
-                respChances.innerText = chance; 
+                respChances.innerText = chances; 
                 trocarStatus(chances)
             }
             verificarFim()
@@ -156,11 +163,7 @@
             frm.inLetra.focus(); 
         } )
 
-        const trocarStatus = (num) =>{
-            if(num>0){
-            imgStatus.src = `img/status${num}.webp`; 
-        }
-    }
+        
       
 
        frm.btVerDica.addEventListener("click",()=>{
