@@ -1,0 +1,23 @@
+{
+  "name": "exercicios",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Filipecezar00/ExerciciosComJS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Filipecezar00/ExerciciosComJS/issues"
+  },
+  "homepage": "https://github.com/Filipecezar00/ExerciciosComJS#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
