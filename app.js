@@ -19,3 +19,13 @@ app.post('/filmes',(req,res)=>{
 app.listen(port,()=>{
 console.log(`Servidor rodando em http://localhost:${port}`); 
 });
+
+// exemplo de middlewares 
+const log = (req,res,next) => {
+    console.log(`...........................Acessado em ${new Date()}`); 
+    next() 
+}
+
+app.get('/transfere',log,(req,res)=>{
+    res.send("OK! Valor transferido com sucesso...");
+}); 
