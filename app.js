@@ -29,3 +29,6 @@ const log = (req,res,next) => {
 app.get('/transfere',log,(req,res)=>{
     res.send("OK! Valor transferido com sucesso...");
 }); 
+
+const livros = require('./livros'); 
+app.use("/livros",livros)
