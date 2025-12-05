@@ -24,3 +24,23 @@ router.post("/",async(req,res)=>{
         res.status(400).json({msg:error.message})
     }
 })
+router.put("/:id",async(req,res)=>{
+    const id=req.params.id; 
+    const {preco} = req.body 
+    try{
+        await dbKnex("livros").update({preco}).where("id",id); 
+        res.status(200).json(); 
+    }catch(error){
+        res.status(400).json({msg:error.message})
+    }
+})
+router.delete("/:id",async(req,res)=>{
+    const {id} = req.params; 
+    try{
+        await dbKnex("livros").del().where({id}); 
+        res.status(200).json(); 
+    }catch(error){
+        res.status(400).json({msg:error.message}); 
+    }
+})
+module.exports = router
