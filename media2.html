@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Média</title>
+    <style>
+        #container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            justify-items: center;
+            flex-direction: column;
+            flex-wrap: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <form action="submit">
+          NOTA 1:
+        <label for="av1"></label>
+        <input type="number" id="av1" required focus> <br> <br>
+           
+           NOTA 2:  
+           <label for="av2"></label>
+           <input type="number" id="av2" required> <br> <br>
+           
+           NOTA 3:
+            <label for="av3"></label>
+            <input type="number" id="av3" required> <br> <br>
+
+            <input type="button" value="Calcular Média" id="btn_media">
+            <input type="button" value="Limpar Campos" id="btn_reset">
+        </form>
+          <div id="mediaFinal"></div>
+    </div>
+       <script>
+            const nota1 = document.getElementById('av1'); 
+            const nota2=document.getElementById("av2"); 
+            const nota3 = document.getElementById("av3"); 
+            const resp = document.getElementById("mediaFinal"); 
+            const btn_reset = document.getElementById("btn_reset"); 
+            const btn_media = document.getElementById("btn_media"); 
+            
+
+            btn_media.addEventListener("click",()=>{
+                let av1 = Number(nota1.value);
+                let av2 = Number(nota2.value);
+                let av3 = Number(nota3.value); 
+                let notas=[] 
+
+                notas.push(av1)
+                notas.push(av2)
+                notas.push(av3)
+                
+                let soma=0 
+
+                for(const nota of notas){
+                  if(Number.isNaN(nota)||nota>10||nota<0){
+                    alert("Digite um valor correto")
+                    return
+                  }
+                 soma+=nota
+               }
+                 let media = soma/notas.length
+                 resp.innerText=`Sua Média é de ${media}` 
+            
+                 return
+            })
+
+       </script>
+</body>
+</html>
