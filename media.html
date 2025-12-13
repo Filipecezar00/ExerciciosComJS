@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Média</title>
+    <style>
+        #container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            justify-items: center;
+            flex-direction: column;
+            flex-wrap: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <form action="submit">
+          NOTA 1:
+        <label for="av1"></label>
+        <input type="number" id="av1" required focus> <br> <br>
+           
+           NOTA 2:  
+           <label for="av2"></label>
+           <input type="number" id="av2" required> <br> <br>
+           
+           NOTA 3:
+            <label for="av3"></label>
+            <input type="number" id="av3" required> <br> <br>
+
+            <input type="button" value="Calcular Média" id="btn_media">
+            <input type="button" value="Limpar Campos" id="btn_reset">
+        </form>
+          <div id="mediaFinal"></div>
+    </div>
+    <script>
+        const av1 = document.getElementById("av1");
+        const av2 = document.getElementById("av2"); 
+        const av3= document.getElementById("av3"); 
+        const btn_media= document.getElementById("btn_media"); 
+        const resp = document.getElementById("mediaFinal")
+        const btn_reset = document.getElementById("btn_reset"); 
+        
+
+        btn_media.addEventListener("click",()=>{
+            let nota1 = Number(av1.value )
+            let nota2 = Number(av2.value )
+            let nota3 = Number(av3.value)
+
+           if(av1.value==""|| nota1<0||nota1>10){
+            alert("valor não digitado corretamente"); 
+            return
+           }else if(av2.value==""||nota2<0||nota2>10){
+            alert("Valor não digitado corretamente"); 
+            return
+           }else if (av3.value==""||nota3<0||nota3>10){
+            alert("Valor não digitado corretamente")
+            return
+           }
+
+            let soma = nota1+nota2+nota3 
+            let media = Math.ceil(soma/3)
+
+            if(media>=7){
+                resp.innerText=`Parabéns você foi Aprovado sua média é de ${media}` 
+                resp.style.color = "green"
+            }else if(media>=5 && media<7){
+                resp.innerText = `Você vai ficar de recuperação, sua média foi de ${media}`
+                resp.style.color="blue"
+            }else if (media<5){
+                resp.innerText = `Você foi reprovado, sua média final foi de ${media}`
+                resp.style.color = "red"
+            }
+        })
+        btn_reset.addEventListener("click",()=>{
+            av1.value=""
+            av2.value=""
+            av3.value=""           
+            resp.innerText="" 
+            return
+        })
+    </script>
+</body>
+</html>
