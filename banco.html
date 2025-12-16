@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Caixa</title>
+</head>
+<body>
+    <h1>Simulador de Caixa Eletrônico</h1> 
+     <p id="saldo"></p>
+     <input type="number" id="valor" placeholder="Digite o Valor">
+     <br><br> 
+     <button id="btn_depositar">Depositar</button>
+     <button id="btn_sacar">Sacar</button> 
+     <p id="mensagem"></p>
+
+     <script>
+        let saldo = 1000 
+        const saldoEl = document.getElementById("saldo"); 
+        const valorInput = document.getElementById("valor"); 
+        const msg = document.getElementById("mensagem"); 
+        const btn_depositar = document.getElementById("btn_depositar"); 
+        const btn_sacar = document.getElementById('btn_sacar')
+
+        window.onload=AtualizarSaldo; 
+        function depositar(){
+           let valor = Number(valorInput.value)
+           if(valor<0){
+            alert("Não é possivel realizar o deposíto de um valor Negativo"); 
+            return 
+           }
+           saldo=saldo+valor 
+           AtualizarSaldo()
+           valorInput.value = ""; 
+        }
+
+        btn_depositar.addEventListener("click",()=>{
+        depositar()
+        AtualizarSaldo()
+        })
+
+        function sacar(){
+        let valor = Number(valorInput.value)
+        if(valor<=0||valor>saldo){
+            alert("Valor invalido para saque"); 
+            return 
+        }
+        saldo = saldo - valor 
+        AtualizarSaldo()
+        valorInput.value=""; 
+        }
+        
+        btn_sacar.addEventListener("click",()=>{
+        sacar() 
+        AtualizarSaldo()
+        })
+
+        
+
+        function AtualizarSaldo() {
+            saldoEl.innerText = `Saldo Atual:R$ ${saldo}`
+        }
+
+        
+        
+     </script>
+</body>
+</html>
