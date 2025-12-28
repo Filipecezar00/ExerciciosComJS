@@ -37,6 +37,7 @@
    </div>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
    <script>
+    //ESTRUTURA DOM
       const btn_enviar = document.getElementById("btn_enviar") 
       const titulo = document.getElementById('titulo')
       const slug = document.getElementById("slug")
@@ -44,7 +45,9 @@
       const conteudo = document.getElementById("conteudo")
       const categoria = document.getElementById("categoria")
 
+      //FUNÇÃO DE VALIDAÇÃO
         function validandoForm(postagem){
+        //OBJETO DA POSTAGEM
          const postagem={
             titulo:titulo.value, 
             slug:slug.value, 
@@ -52,7 +55,23 @@
             conteudo:conteudo.value, 
             categoria:categoria.value 
          }
+         //ARRAY DE ERROS E ESTRUTURAS CONDICIONAIS DE VALIDAÇÕES 
          let erros = []
+         if(titulo.value.length<3){
+            erros.push("Titulo possui menos de três caracteres")
+         }
+         if(slug.value.includes(" ") || slug.value.toLowerCase()){
+            erros.push("Slug Possui Espaço ou caracteres Maiusculos")
+         }
+         if(descricao.value=""){
+            erros.push("Descrição Não Pode Estar Vazia")
+         }
+         if(conteudo.value<10){
+            erros.push("O contéudo Possui Menos de 10 caracteres")
+         }
+         if(Number(categoria.value)==0){
+            erros.push("O Número da Categoria Não Pode Ser igual a 0")
+         }
         }
 
    </script>
