@@ -7,7 +7,7 @@
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 <body>
-    <h1>Validador de Postagens</h1>
+    <h1>Criador de Postagens</h1>
    <div class="card mt-3">
        <div class="card-box">
            <form id="form">
@@ -31,11 +31,14 @@
                 <label for="categoria" class="form-label">Categoria:</label>
                 <input type="text" class="form-control" id="categoria" required>
              </div>
-             <button class="btn btn-success" id="btn_enviar">Enviar Formulário</button>
+             <button class="btn btn-success" id="btn_enviar">Criar Postagem</button>
            </form>
        </div>
    </div>
    <div id="resp"></div>
+   <div id="postagens">
+
+   </div>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
    <script>
     //ESTRUTURA DOM
@@ -47,6 +50,10 @@
       const categoria = document.getElementById("categoria")
       const resp = document.getElementById("resp")
       const form = document.getElementById("form")
+      const Listapostagens = document.getElementById("postagens")
+
+      atualizarTela()
+
       //Evento do Form
       form.addEventListener("submit",(e)=>{
         e.preventDefault()
@@ -76,10 +83,45 @@
             resp.className = "alert alert-danger"
             resp.innerText = ` O formulário Apresenta as Seguintes Limitações \n ${erros.join("\n")}`
          }else{
-            alert("Formulário Enviado Com Sucesso") 
-            form.reset()
-         }
+            const postagem={
+                titulo:titulo.value, 
+                slug:slug.value, 
+                descricao:descricao.value, 
+                conteudo:conteudo.value, 
+                categoria:categoria.value 
+            }
+          
+           let postagens = JSON.parse(localStorage.getItem("postagem")) || []
+           postagens.push(postagem) 
+           localStorage.setItem("postagem",JSON.stringify(postagens)); 
+
+           form.reset() 
+           resp.className =""
+           resp.innerText=""         
+            
+           atualizarTela(); 
         }
+    }
+        function atualizarTela(){
+        Listapostagens.innerHTML = ""; 
+        
+        let postagens = JSON.parse(localStorage.getItem("postagem")) || [] 
+        
+        postagens.forEach((postagem)=>{
+             Listapostagens.innerHTML+=`
+            <div class="card mb-2">
+                <div class="card-body">
+                    <h5>${postagem.titulo}</h5> 
+                    <h6>${postagem.slug}</h6>
+                    <small>${postagem.descricao}</small> 
+                    <small>${postagem.conteudo}</small> 
+                    <small>${postagem.categoria}</small> <br> 
+                   <button class="btn btn-danger mt-3">Excluir Postagem</button> 
+                    </div>      
+            </div>
+           `
+        })
+    }
    </script>
 </body>
 </html>
