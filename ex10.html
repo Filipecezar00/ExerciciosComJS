@@ -36,6 +36,7 @@
                </form>
                </div>
             </div>
+            <input type="text" id="busca" class="form-control mt-3" placeholder="Buscar por título">
         <div id="resp"></div>
         <div id="postagens" class="mt-4"></div>
    </div>
@@ -51,6 +52,7 @@
       const resp = document.getElementById("resp")
       const form = document.getElementById("form")
       const Listapostagens = document.getElementById("postagens")
+      const InputBusca = document.getElementById("busca") 
 
       atualizarTela()
 
@@ -102,7 +104,7 @@
            atualizarTela(); 
         }
     }
-        function atualizarTela(){
+        function atualizarTela(termoBusca){
         Listapostagens.innerHTML = ""; 
         
         let postagens = JSON.parse(localStorage.getItem("postagem")) || [] 
@@ -124,13 +126,17 @@
     }
       function deletarPostagem(index){
             let postagens = JSON.parse(localStorage.getItem("postagem")) || [] 
-
             postagens.splice(index,1) 
-
             localStorage.setItem("postagem",JSON.stringify(postagens)) 
-
             atualizarTela()
         }   
+
+    InputBusca.addEventListener("input",(e)=>{
+      const termoDigitado = e.target.value; 
+      atualizarTela(termoDigitado) 
+      
+    })
+
    </script>
 </body>
 </html>
