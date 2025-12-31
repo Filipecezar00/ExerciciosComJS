@@ -104,11 +104,21 @@
            atualizarTela(); 
         }
     }
-        function atualizarTela(termoBusca){
+        function atualizarTela(termoBusca=""){
         Listapostagens.innerHTML = ""; 
         
         let postagens = JSON.parse(localStorage.getItem("postagem")) || [] 
         
+        if(termoBusca!==""){
+            postagens=postagens.filter(post=>{
+                return post.titulo.toLowerCase().includes(termoBusca.toLowerCase())
+            })
+        }
+        if(postagens.length==0){
+            Listapostagens.innerHTML = "<p class='text-muted text-center'>Nenhuma Postagem Realizada</p>"
+            return 
+        }
+
         postagens.forEach((postagem,index)=>{
              Listapostagens.innerHTML+=`
             <div class="card mb-2">
@@ -134,7 +144,7 @@
     InputBusca.addEventListener("input",(e)=>{
       const termoDigitado = e.target.value; 
       atualizarTela(termoDigitado) 
-      
+
     })
 
    </script>
