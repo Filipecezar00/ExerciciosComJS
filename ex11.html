@@ -60,6 +60,9 @@
         const btn_limpar = document.getElementById("btn_limpar")
         const saldo = document.getElementById("saldo_atual")
 
+        atualizarTela()
+
+        formulario.addEventListener("")
         function addTransacao(){
             let conta = descricao.value 
             let valorConta = valor.value
@@ -76,11 +79,33 @@
             }
             let transacoes = JSON.parse(localStorage.getItem("transacao")) || [] 
             transacoes.push(transacao) 
+            localStorage.setItem("transacao",JSON.stringify(trancacoes))
 
             formulario.reset()
 
-           
+            atualizarTela() 
         }
+        
+        function atualizarTela(){
+        let transacoes = JSON.parse(localStorage.getItem("transacao")) || [] 
+            transacoes.forEach(transacao =>{
+                if(tipo.value=="entrada"){
+                    lista.className = "valor-positivo"
+                }else if(tipo.value=="saida"){
+                    lista.className="valor-negativo"
+                }
+                lista.innerHTML+=`
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <h5>${transacao.desc}</h5>
+                        <h6>${transacao.preco}</h6>
+                        <small>${transacao.modo}</small>
+                    </div>
+                </div>
+                `
+            });
+        }
+
 
     </script>
 </body>
