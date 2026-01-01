@@ -6,6 +6,14 @@
     <title>Carteira Digital</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+<style>
+    .valor-positivo{
+        color: green;
+    }
+    .valor-negativo{
+        color: red;
+    }
+</style>
 <body class="bg-light">
     <div class="container mt-5">
         <h1 class="text-center mb-4">Carteira Digital</h1>
@@ -52,7 +60,28 @@
         const btn_limpar = document.getElementById("btn_limpar")
         const saldo = document.getElementById("saldo_atual")
 
-        
+        function addTransacao(){
+            let conta = descricao.value 
+            let valorConta = valor.value
+
+            if(tipo.value=="entrada"){
+                let soma = Number(valorConta+saldo)
+            }else if(tipo.value=="saida"){
+                let subtracao = Number(valorConta-saldo) 
+            } 
+            const transacao={
+                desc:conta, 
+                preco:valor, 
+                modo:tipo.value
+            }
+            let transacoes = JSON.parse(localStorage.getItem("transacao")) || [] 
+            transacoes.push(transacao) 
+
+            formulario.reset()
+
+           
+        }
+
     </script>
 </body>
 </html>
