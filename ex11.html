@@ -41,7 +41,7 @@
                             </select>
                         </div>
                         <div class="col-md-1 mb-2">
-                            <button class="btn btn-primary w-100">+</button>
+                            <button class="btn btn-primary w-100" id="btn_enviar">+</button>
                         </div>
                     </div>
                 </form>
@@ -59,27 +59,27 @@
         const lista = document.getElementById("lista_transacoes")
         const btn_limpar = document.getElementById("btn_limpar")
         const saldo = document.getElementById("saldo_atual")
+        const btn_enviar = document.getElementById("btn_enviar")
 
         atualizarTela()
 
-        formulario.addEventListener("")
+        btn_enviar.addEventListener("click",(e)=>{
+            e.preventDefault()
+            addTransacao()
+        })
+
         function addTransacao(){
             let conta = descricao.value 
-            let valorConta = valor.value
+            let valorConta = Number(valor.value)
 
-            if(tipo.value=="entrada"){
-                let soma = Number(valorConta+saldo)
-            }else if(tipo.value=="saida"){
-                let subtracao = Number(valorConta-saldo) 
-            } 
             const transacao={
                 desc:conta, 
-                preco:valor, 
+                preco:valorConta, 
                 modo:tipo.value
             }
             let transacoes = JSON.parse(localStorage.getItem("transacao")) || [] 
             transacoes.push(transacao) 
-            localStorage.setItem("transacao",JSON.stringify(trancacoes))
+            localStorage.setItem("transacao",JSON.stringify(transacoes))
 
             formulario.reset()
 
@@ -87,29 +87,38 @@
         }
         
         function atualizarTela(){
+        lista.innerHTML =""
+        let saldoTotal = 0  
         let transacoes = JSON.parse(localStorage.getItem("transacao")) || [] 
+        let ValorSaldo = saldo.value 
+
             transacoes.forEach(transacao =>{
-                if(tipo.value=="entrada"){
-                    lista.className = "valor-positivo"
-                }else if(tipo.value=="saida"){
-                    lista.className="valor-negativo"
+                let classeCor
+                if(transacao.modo=="entrada"){
+                    saldoTotal+= transacao.preco 
+                    classeCor="valor-positivo"
+                }else if(transacao.modo=="saida"){
+                     saldoTotal-=transacao.preco 
+                     classeCor="valor-negativo"
                 }
                 lista.innerHTML+=`
                 <div class="card mb-2">
                     <div class="card-body">
                         <h5>${transacao.desc}</h5>
-                        <h6>${transacao.preco}</h6>
-                        <small>${transacao.modo}</small>
+                        <h6 class="${classeCor}">R$: ${transacao.preco.toFixed(2)}</h6>
+                        <small>${transacao.modo.toUpperCase()}</small>
                     </div>
                 </div>
                 `
             });
+            saldo.innerText =`R$ ${saldoTotal.toFixed(2)}`
         }
 
-        btn_limpar.addEventListener("click",()=>{
+        btn_limpar.addEventListener("click",(transacao)=>{
             let transacoes = JSON.parse(localStorage.getItem("transacao")) || []
-            lista.value=""
-            localStorage.removeItem("transacoes")
+            lista.innerHTML=""
+            localStorage.removeItem("transacao")
+            atualizarTela()
         })
 
     </script>
